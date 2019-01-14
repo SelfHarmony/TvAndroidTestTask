@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "android.tv.test.tvandroidtest"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:leanback-v17:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
+
+    def deps = rootProject.ext.libraries
+    implementation deps.reprofit
+    implementation deps.reprofitGson
+    implementation deps.reprofitRx
+    implementation deps.okhttp
+    implementation deps.okhttpLogging
+
+    implementation deps.room
+    kapt deps.roomCompiler
+    implementation deps.roomRx
+
+    implementation deps.rx2Java
+    implementation deps.rx2Android
+    implementation deps.rxKotlin
+
+}
